@@ -132,7 +132,7 @@ namespace BookigApp.Tests
 
         [TestCase(100)]
         [TestCase(200)]
-        public void BookRoomTestWithCorrectBudgetAndEnoughBedCapaciry(double budget)
+        public void BookRoomTestWithEqualAndMoreBudgetAndEqualBedCapaciry(double budget)
         {
             Room room = new Room(2, 50);
             hotel.AddRoom(room);
