@@ -23,10 +23,33 @@ namespace BookigApp.Tests
         [Test]
         public void ConstructorSetsFullNameAndCategoryCorrectly()
         {
-            Assert.AreEqual("Struma", hotel.FullName);
-            Assert.AreEqual(3, hotel.Category);
+            string expectedFullName = "Struma";
+            int expectedCategory = 1;
+
+            Hotel testConstructorHotel = new Hotel(expectedFullName, expectedCategory);
+
+            Assert.AreEqual(expectedFullName, testConstructorHotel.FullName);
+            Assert.That(expectedCategory, Is.EqualTo(testConstructorHotel.Category));
         }
 
-   
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase(" ")]
+        [TestCase("       ")]
+        public void FullNameSetterThrowsExceptionWhenValueIsNullOrWhiteSpace(string fullName)
+        {
+            Assert.Throws<ArgumentNullException>(() => new Hotel(fullName, 3));
+        }
+
+        [TestCase(-10)]
+        [TestCase(0)]
+        [TestCase(6)]
+        [TestCase(10)]
+        public void CategortySetterThrowsExceptionWhenValueOutOfRange(int category)
+        {
+            Assert.Throws<ArgumentException>(() => new Hotel("Struma", category));
+        }
+
+
     }
 }
