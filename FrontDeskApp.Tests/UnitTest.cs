@@ -24,7 +24,7 @@ namespace BookigApp.Tests
         public void ConstructorSetsFullNameAndCategoryCorrectly()
         {
             Assert.AreEqual("Struma", hotel.FullName);
-            Assert.AreEqual("3", hotel.Category);
+            Assert.AreEqual(3, hotel.Category);
         }
 
    
