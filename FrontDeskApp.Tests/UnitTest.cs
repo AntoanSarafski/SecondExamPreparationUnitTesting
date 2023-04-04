@@ -82,5 +82,15 @@ namespace BookigApp.Tests
             Assert.Throws<ArgumentException>(() => hotel.BookRoom(2, children, 3, 500));
         }
 
+        [TestCase(0)]
+        [TestCase(-10)]
+        public void BookRoomThrowsExceptionWhenReservationDurationIsLessThanOne(int duration)
+        {
+            Room room = new(3, 300);
+
+            hotel.AddRoom(room);
+
+            Assert.Throws<ArgumentException>(() => hotel.BookRoom(2, 2, duration, 500));
+        }
     }
 }
