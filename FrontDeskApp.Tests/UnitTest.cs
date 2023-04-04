@@ -50,6 +50,37 @@ namespace BookigApp.Tests
             Assert.Throws<ArgumentException>(() => new Hotel("Struma", category));
         }
 
+        [Test]
+        public void AddRoomAddsRoomCorrectly()
+        {
+            Room room = new(3, 100);
+
+            hotel.AddRoom(room);
+
+            Assert.AreEqual(1, hotel.Rooms.Count);
+        }
+
+        [TestCase(0)]
+        [TestCase(-10)]
+        public void BookRoomThrowsExceptionWhenThereAreNoAdults(int adults)
+        {
+            Room room = new(3, 300);
+
+            hotel.AddRoom(room);
+
+            Assert.Throws<ArgumentException>(() => hotel.BookRoom(adults, 2, 3, 500));
+        }
+
+        [TestCase(-1)]
+        [TestCase(-10)]
+        public void BookRoomThrowsExceptionWhenChildrenAreLessThanZero(int children)
+        {
+            Room room = new(3, 300);
+
+            hotel.AddRoom(room);
+
+            Assert.Throws<ArgumentException>(() => hotel.BookRoom(2, children, 3, 500));
+        }
 
     }
 }
