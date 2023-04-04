@@ -144,11 +144,11 @@ namespace BookigApp.Tests
 
         [TestCase(5)]
         [TestCase(10)]
-        public void BookRoomTestWithCorrectBudgetAndEqualAndMoreBedCapaciry(int bn)
+        public void BookRoomTestWithCorrectBudgetAndEqualAndMoreBedCapaciry(int bedCapacity)
         {
-            Room room = new Room(, 50);
+            Room room = new Room(bedCapacity, 50);
             hotel.AddRoom(room);
-            hotel.BookRoom(2, 0, 2, budget);
+            hotel.BookRoom(2, 3, 2, 1000);
 
             Assert.AreEqual(1, hotel.Bookings.Count);
             Assert.AreEqual(100, hotel.Turnover);
