@@ -92,5 +92,31 @@ namespace BookigApp.Tests
 
             Assert.Throws<ArgumentException>(() => hotel.BookRoom(2, 2, duration, 500));
         }
+
+        [Test]
+        public void BookRoomNoTurnoverWhenNotEnoughBeds()
+        {
+
+            Room room = new(3, 300);
+
+            hotel.AddRoom(room);
+
+            hotel.BookRoom(3, 1, 2, 50);
+            Assert.That(hotel.Turnover, Is.EqualTo(0));
+        }
+
+
+        [Test]
+        public void BookRoomNoTurnoveIfBudgetNotEnough()
+        {
+
+            Room room = new(3, 50);
+
+            hotel.AddRoom(room);
+
+            hotel.BookRoom(2, 1, 2, 50);
+            Assert.That(hotel.Turnover, Is.EqualTo(0));
+        }
+
     }
 }
